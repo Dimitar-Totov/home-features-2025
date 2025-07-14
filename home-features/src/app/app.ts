@@ -1,9 +1,13 @@
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
+import { Header } from './shared/components/header/header';
+import { Footer } from './shared/components/footer/footer';
+import { ProductBoard } from './features/products/product-board/product-board';
+import { Home } from './shared/components/home/home';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet],
+  imports: [RouterOutlet, Home, Header, Footer, ProductBoard],
   templateUrl: './app.html',
   styleUrl: './app.css'
 })
