@@ -1,0 +1,26 @@
+.welcome-container {
+    background-image: url('../../../../../public/homepage.jpg');
+    height: 90dvh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    h1 {
+        color: #fff;
+        font-family: Comic Neue, sans-serif;
+        padding-top: 2em;
+    }
+
+    a {
+        color: #fff;
+        font-family: Comic Neue, sans-serif;
+        text-decoration: none;
+        font-size: 1.5em;
+        font-weight: bold;
+
+        &::after {
+            content: '🏠';
+            margin-left: 0.3em;
+        }
+    }
+}
