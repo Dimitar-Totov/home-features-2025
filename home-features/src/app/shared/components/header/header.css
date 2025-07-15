@@ -5,9 +5,26 @@ header {
         display: flex;
         justify-content: space-between;
         padding-right: 2rem;
+        position: relative;
+        margin-bottom: 1em;
 
         a {
             text-decoration: none;
+        }
+
+        img {
+            max-width: 8ch;
+            margin-left: 1em;
+            position: absolute;
+            border-radius: 0.3em;
+
+            &:hover {
+                transition: box-shadow 0.2s ease;
+            }
+
+            &:hover {
+                box-shadow: 0 0 0.5em 0 rgb(227, 195, 64);
+            }
         }
 
         ul {
@@ -21,6 +38,23 @@ header {
                     font-size: 1.2em;
                     font-family: Inter, sans-serif;
                     color: #10898d;
+                    position: relative;
+
+                    &::after {
+                        content: "";
+                        position: absolute;
+                        left: 50%;
+                        bottom: -5px;
+                        width: 0%;
+                        height: 2px;
+                        background-color: #10898d;
+                        transition: width 0.3s ease, left 0.3s ease;
+                    }
+
+                    &:hover::after {
+                        width: 100%;
+                        left: 0;
+                    }
                 }
             }
         }
