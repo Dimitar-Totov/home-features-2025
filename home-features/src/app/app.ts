@@ -7,10 +7,10 @@ import { Home } from './shared/components/home/home';
 import { AboutUs } from './shared/components/about-us/about-us';
 import { Login } from './shared/components/login/login';
 import { Register } from './shared/components/register/register';
+import { ProductCreate } from './features/products/product-create/product-create';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, Home, Header, Footer, ProductBoard, AboutUs],
   imports: [RouterOutlet, Home, Header, Footer, ProductBoard, AboutUs, Login, Register,ProductCreate],
   templateUrl: './app.html',
   styleUrl: './app.css'

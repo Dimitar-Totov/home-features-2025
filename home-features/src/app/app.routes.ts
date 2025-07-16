@@ -9,7 +9,8 @@ import { ProductCreate } from './features/products/product-create/product-create
 export const routes: Routes = [
     { path: '', component: Home },
     { path: 'catalog', component: ProductBoard },
-    { path: 'about', component: AboutUs }
+    { path: 'about', component: AboutUs },
     { path: 'register', component: Register },
     { path: 'login', component: Login },
+    { path: 'create', component: ProductCreate },
 ];
