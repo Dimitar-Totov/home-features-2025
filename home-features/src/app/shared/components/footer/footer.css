@@ -1,3 +1,130 @@
 footer {
-    background-color: #aaaaaa;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    
+    section{
+        padding-inline: 16em;
+    }
+
+    .info {
+        background-color: #2B3345;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        h2 {
+            color: #fff;
+            font-weight: 500;
+        }
+
+        a {
+            text-decoration: none;
+            color: #A4A5A8;
+        }
+
+        div {
+            display: flex;
+            flex-direction: column;
+            gap: 0.4em;
+
+            a:hover {
+                color: #fff;
+                text-decoration: underline;
+            }
+
+            a:last-of-type {
+                margin-bottom: 4em;
+            }
+        }
+
+        .media {
+
+            .apple-box,
+            .google-box {
+                background-color: #212735;
+                display: flex;
+                flex-direction: row;
+                justify-content: center;
+                align-items: center;
+                padding: 0.5em 1em;
+                gap: 1em;
+                border-radius: 0.5em;
+
+                a {
+                    color: #fff;
+                    max-width: 12ch;
+                    margin: 0;
+                }
+
+                .fa-apple {
+                    color: #fff;
+                }
+
+                .fa-google-play {
+                    color: aqua;
+                }
+            }
+        }
+    }
+
+    .terms {
+        background-color: #212635;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding-top: 2em;
+        .text {
+            a {
+                text-decoration: none;
+            }
+
+            p {
+                color: #9B9CA0;
+
+                &:first-of-type {
+                    padding-left: 1em;
+                    position: relative;
+
+                    &::before {
+                        position: absolute;
+                        content: '\f3c5';
+                        font-family: "Font Awesome 6 Free";
+                        font-weight: 900;
+                        color: #9B9CA0;
+                        left: 0;
+                    }
+                }
+            }
+
+            .conditions {
+                display: flex;
+                gap: 1.5em;
+
+                a {
+                    position: relative;
+                    color: #fff;
+
+                    &:hover{
+                        text-decoration: underline;
+                    }
+
+                    &:not(:last-of-type)::after {
+                        content: '|';
+                        position: absolute;
+                        right: -14px;
+                    }
+                }
+            }
+        }
+        .icons{
+            display: flex;
+            gap: 1em;
+            font-size: 1.4em;
+
+            i{
+                color: #fff;
+            }
+        }
+    }
 }
