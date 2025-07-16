@@ -1,0 +1,90 @@
+@import url('https://fonts.googleapis.com/css2?family=Comic+Neue:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Margarine&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Playwrite+PE:wght@100..400&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:ital,wght@0,100..900;1,100..900&family=Winky+Rough:ital,wght@0,300..900;1,300..900&display=swap');
+
+.register-container {
+    min-height: 80vh;
+    background-color: #FAF0E6;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    .register-form {
+        display: flex;
+        flex-direction: column;
+
+        img {
+            max-width: 20ch;
+            margin: 0 auto 1em auto;
+        }
+
+        button {
+            padding: 0.7em 2em;
+            border: none;
+            border-radius: 0.4em;
+            background-color: #fff;
+            transition: background-color 0.3s;
+
+            &:hover {
+                color: #fff;
+                background-color: orange;
+            }
+        }
+
+        input {
+            padding: 0.7em 2em;
+            border-radius: 0.3em;
+            border: none;
+
+            &:first-of-type {
+                margin-bottom: 1em;
+            }
+
+            &:focus {
+                outline: none;
+            }
+        }
+
+        .user,
+        .password,
+        .confirm-password{
+            position: relative;
+
+            i {
+                position: absolute;
+                color: orange;
+                top: 9px;
+                left: 7px;
+            }
+        }
+
+        .password i:last-of-type,
+        .confirm-password i:last-of-type {
+            left: 195px;
+        }
+    }
+
+    .signup-text {
+        font-family: Winky Rough, sans-serif;
+
+        a {
+            text-decoration: none;
+            color: #10898d;
+            position: relative;
+
+            &::after {
+                content: "";
+                position: absolute;
+                left: 50%;
+                bottom: -1px;
+                width: 0%;
+                height: 1px;
+                background-color: #10898d;
+                transition: width 0.3s ease, left 0.3s ease;
+            }
+
+            &:hover::after {
+                width: 100%;
+                left: 0;
+            }
+        }
+    }
+}
