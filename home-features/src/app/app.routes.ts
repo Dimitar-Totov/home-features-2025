@@ -5,6 +5,7 @@ import { AboutUs } from './shared/components/about-us/about-us';
 import { Register } from './shared/components/register/register';
 import { Login } from './shared/components/login/login';
 import { ProductCreate } from './features/products/product-create/product-create';
+import { NotFound } from './shared/components/not-found/not-found';
 
 export const routes: Routes = [
     { path: '', component: Home },
@@ -13,4 +14,5 @@ export const routes: Routes = [
     { path: 'register', component: Register },
     { path: 'login', component: Login },
     { path: 'create', component: ProductCreate },
+    { path: '**', component: NotFound },
 ];
