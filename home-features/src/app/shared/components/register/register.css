@@ -43,7 +43,8 @@
             }
         }
 
-        .user,
+        .username,
+        .email,
         .password,
         .confirm-password{
             position: relative;
