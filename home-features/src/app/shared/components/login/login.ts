@@ -5,7 +5,8 @@ import { RouterLink } from '@angular/router';
   selector: 'app-login',
   imports: [RouterLink],
   templateUrl: './login.html',
-  styleUrl: './login.css'
+  styleUrl: './login.css',
+  standalone: true,
 })
 export class Login {
   showLoginPassword: boolean = false;

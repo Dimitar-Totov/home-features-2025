@@ -5,7 +5,8 @@ import { RouterLink } from '@angular/router';
   selector: 'app-register',
   imports: [RouterLink],
   templateUrl: './register.html',
-  styleUrl: './register.css'
+  styleUrl: './register.css',
+  standalone: true,
 })
 export class Register {
   showPassword: boolean = false;
