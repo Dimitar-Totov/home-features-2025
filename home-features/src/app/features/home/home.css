@@ -1,5 +1,5 @@
 .welcome-container {
-    background-image: url('../../../../../public/homepage.jpg');
+    background-image: url('../../../../public/homepage.jpg');
     height: 90vh;
     display: flex;
     flex-direction: column;
