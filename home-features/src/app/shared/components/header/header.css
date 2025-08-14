@@ -6,11 +6,12 @@ header {
         justify-content: space-between;
         padding-right: 2rem;
         position: relative;
-        margin-bottom: 1em;
+        padding-block: 1em;
 
         a {
             text-decoration: none;
         }
+
 
         img {
             max-width: 8ch;
@@ -55,6 +56,28 @@ header {
                         width: 100%;
                         left: 0;
                     }
+                }
+            }
+
+            .profile {
+                display: flex;
+                align-items: start;
+                gap: 1em;
+                
+                i {
+                    color: orange;
+                    font-size: 1.2em;
+                    margin-left: 1em;
+                }
+
+                p{
+                    max-width: 15ch;
+                    font-size: 1.2em;
+                    margin: 0;
+                }
+
+                span{
+                    color: orange;
                 }
             }
         }
