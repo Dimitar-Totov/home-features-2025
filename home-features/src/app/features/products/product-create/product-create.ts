@@ -1,12 +1,45 @@
-import { Component } from '@angular/core';
-import { RouterLink } from '@angular/router';
+import { Component, inject } from '@angular/core';
+import { AuthService, ProductService } from '../../../core/services';
+import { Router } from '@angular/router';
+import { Product } from '../../../models';
+import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-product-create',
-  imports: [RouterLink],
+  imports: [FormsModule,ReactiveFormsModule],
   templateUrl: './product-create.html',
-  styleUrl: './product-create.css'
+  styleUrl: './product-create.css',
+  standalone: true,
 })
 export class ProductCreate {
+  productFormGroup: FormGroup;
 
+  constructor() {
+    this.productFormGroup = new FormGroup({
+      name: new FormControl('',[Validators.minLength(5)]),
+      category: new FormControl(''),
+      price: new FormControl(''),
+      color: new FormControl(''),
+      dimensions: new FormControl(''),
+      description: new FormControl(''),
+    })
+  }
+
+  private authService = inject(AuthService);
+  private productService = inject(ProductService);
+  private router = inject(Router);
+
+
+  onCancel(): void {
+    this.router.navigate(['/']);
+  }
+
+  onSubmit(): void {
+    const response = this.productService.createProduct();
+    response.subscribe((product: Product) => {
+      if (product) {
+        this.router.navigate(['/catalog']);
+      }
+    })
+  }
 }
