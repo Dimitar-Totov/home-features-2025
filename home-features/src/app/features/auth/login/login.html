@@ -1,25 +1,32 @@
 <div class="login-container">
-    <form action="#" method="post" class="login-form">
+    <form class="login-form" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
         <img src="https://static.vecteezy.com/system/resources/thumbnails/054/563/337/small_2x/orange-profile-icon-png.png"
             alt="Avatar">
 
         <div class="user">
             <i class="fa-solid fa-envelope"></i>
-            <input type="email" id="email" name="email" placeholder="Email" required>
+            <input type="email" id="email" name="email" placeholder="Email" formControlName="email" required>
+            @if(emailError){
+                <p class="error">{{emailErrorMessage}}</p>
+            }
         </div>
 
 
         <div class="password">
             <i class="fa-solid fa-lock"></i>
-            <input [type]="showLoginPassword ? 'text' : 'password' " id="password" name="password" placeholder="Password"
-                required />
+            <input [type]="showLoginPassword ? 'text' : 'password' " id="password" name="password"
+                placeholder="Password" formControlName="password" required />
             <i class="fas" [class.fa-eye]="showLoginPassword" [class.fa-eye-slash]="!showLoginPassword"
                 (click)="toggleLoginPassword()"></i>
+
+            @if(passwordError){
+                <p class="error">{{passwordErrorMessage}}</p>
+            }
         </div>
         <p class="signup-text">
             Don't have an account? <a routerLink="/register">Register</a>
         </p>
 
-        <button type="submit">Login</button>
+        <button [disabled]="!loginForm.invalid" type="submit">Login</button>
     </form>
 </div>
