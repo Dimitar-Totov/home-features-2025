@@ -1,0 +1,61 @@
+@import url('https://fonts.googleapis.com/css2?family=Comic+Neue:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Margarine&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Playwrite+PE:wght@100..400&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:ital,wght@0,100..900;1,100..900&family=Winky+Rough:ital,wght@0,300..900;1,300..900&display=swap');
+
+
+.about {
+    min-height: 100dvh;
+    background-color: #FAF0E6;
+
+    &>* {
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+    }
+
+    &>*:not(:last-child) {
+        margin-bottom: 2em;
+    }
+
+    img {
+        max-width: 80ch;
+        border-radius: 0.3em;
+    }
+
+    p {
+        max-width: 66ch;
+        font-size: 1.4em;
+        font-family: Comic Neue, sans-serif;
+    }
+
+    .info-about-us {
+        padding-top: 2em;
+        margin-bottom: 2.5em;
+    }
+
+    .offers {
+        padding-bottom: 1em;
+        h2 {
+            font-weight: 400;
+            font-family: Montserrat, sans-serif;
+        }
+
+        ul {
+            list-style-type: none;
+
+            li {
+                font-family: Comic Neue, sans-serif;
+                font-size: 1.2em;
+                display: block;
+
+                &::before {
+                    content: '✅';
+                }
+
+                &:not(:last-of-type) {
+                    margin-bottom: 0.2em;
+                }
+
+            }
+        }
+    }
+
+}
