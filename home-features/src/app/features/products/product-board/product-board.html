@@ -1,70 +1,22 @@
-<div class="products-container">
+<div class="board-container">
+    @for(product of products; track product.name){
     <article class="product">
         <div class="media">
-            <img src="https://www.bestfurn.com.au/wp-content/uploads/2022/06/Melanie_Accent_Chair_for_Web_1152x790px-Flipped.jpg"
-                alt="product">
+            <img [src]="product.imageUrl" [alt]="product.name">
         </div>
         <div class="info">
-            <p>Name: <span></span></p>
-            <p>Category: <span></span></p>
-            <p>Price: <span></span></p>
-            <p>Color: <span></span></p>
-            <p>Dimensions: <span></span></p>
-            <p>Description: <span></span></p>
+            <p>Name: {{product.name}}</p>
+            <p>Category: {{product.category}}</p>
+            <p>Price: {{product.price}}</p>
+            <p>Color: <span>{{product.color}}</span></p>
+            <p>Dimensions: {{product.dimensions}}</p>
+            <p>Description: {{product.description}}</p>
         </div>
+        @if(isLoggedIn()){
+        <div class="product-details">
+            <a [routerLink]="['/catalog', product._id, 'details']">Details</a>
+        </div>
+        }
     </article>
-    <article class="product">
-        <div class="media">
-            <img src="https://api-prod.freedom.com.au/medias/800Wx800H-24597425-LIF-1-ORIGINAL.png?context=bWFzdGVyfGltYWdlc3wxNDUxNjE5fGltYWdlL3BuZ3xhR015TDJobE1DOHhNVEU1TnpJMU5EUXpORGcwTmk4NE1EQlhlRGd3TUVoZk1qUTFPVGMwTWpWZlRFbEdYekZmVDFKSlIwbE9RVXd1Y0c1bnwwY2JiY2U5MzFmY2Y2OThhMTczYjEwNTk3NDg2MGI4MDZhMzllMWM1ZWU4NzU0MTQxMTQxNWJmMjg1NjI0YjAz"
-                alt="product">
-        </div>
-        <div class="info">
-            <p>Name: <span></span></p>
-            <p>Category: <span></span></p>
-            <p>Price: <span></span></p>
-            <p>Color: <span></span></p>
-            <p>Dimensions: <span></span></p>
-            <p>Description: <span></span></p>
-        </div>
-    </article>
-    <article class="product">
-        <div class="media">
-            <img src="https://m.media-amazon.com/images/I/81lyZwtD8yL._UF894,1000_QL80_.jpg" alt="product">
-        </div>
-        <div class="info">
-            <p>Name: <span></span></p>
-            <p>Category: <span></span></p>
-            <p>Price: <span></span></p>
-            <p>Color: <span></span></p>
-            <p>Dimensions: <span></span></p>
-            <p>Description: <span></span></p>
-        </div>
-    </article>
-    <article class="product">
-        <div class="media">
-            <img src="https://www.westcoastappliance.ca/files/image/attachment/28281/CS_20926.jpg" alt="product">
-        </div>
-        <div class="info">
-            <p>Name: <span></span></p>
-            <p>Category: <span></span></p>
-            <p>Price: <span></span></p>
-            <p>Color: <span></span></p>
-            <p>Dimensions: <span></span></p>
-            <p>Description: <span></span></p>
-        </div>
-    </article>
-    <article class="product">
-        <div class="media">
-            <img src="https://cdn.panhomestores.com/cdn-cgi/image/width=624px,quality=60,%20format=auto,%20dpr=1/media/catalog/category/Corner_Sofa_Set_1.png"
-                alt="product">
-        </div>
-        <div class="info">
-            <p>Name: <span></span></p>
-            <p>Category: <span></span></p>
-            <p>Price: <span></span></p>
-            <p>Color: <span></span></p>
-            <p>Dimensions: <span></span></p>
-            <p>Description: <span></span></p>
-        </div>
-    </article>
+    }
 </div>
