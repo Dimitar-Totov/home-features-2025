@@ -1,18 +1,11 @@
 import { Routes } from '@angular/router';
-import { ProductBoard } from './features/products/product-board/product-board';
-import { Home } from './shared/components/home/home';
-import { AboutUs } from './shared/components/about-us/about-us';
-import { Register } from './shared/components/register/register';
-import { Login } from './shared/components/login/login';
-import { ProductCreate } from './features/products/product-create/product-create';
-import { NotFound } from './shared/components/not-found/not-found';
 
 export const routes: Routes = [
-    { path: '', component: Home },
-    { path: 'catalog', component: ProductBoard },
-    { path: 'about', component: AboutUs },
-    { path: 'register', component: Register },
-    { path: 'login', component: Login },
-    { path: 'create', component: ProductCreate },
-    { path: '**', component: NotFound },
+    { path: '', loadComponent: () => import('./features/home/home').then(c => c.Home) },
+    { path: 'catalog', loadComponent: () => import('./features/products/product-board/product-board').then(c => c.ProductBoard) },
+    { path: 'about', loadComponent: () => import('./features/about-us/about-us').then(c => c.AboutUs) },
+    { path: 'register', loadComponent: () => import('./features/auth/register/register').then(c => c.Register) },
+    { path: 'login', loadComponent: () => import('./features/auth/login/login').then(c => c.Login) },
+    { path: 'create', loadComponent: () => import('./features/products/product-create/product-create').then(c => c.ProductCreate) },
+    { path: '**', loadComponent: () => import('./shared/components/not-found/not-found').then(c => c.NotFound) },
 ];
