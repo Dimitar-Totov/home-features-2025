@@ -9,10 +9,11 @@ import { Login } from './features/auth/login/login';
 import { Register } from './features/auth/register/register';
 import { ProductCreate } from './features/products/product-create/product-create';
 import { NotFound } from './shared/components/not-found/not-found';
+import { ErrorNotification } from './shared/components/error-notification/error-notification';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, Home, Header, Footer, ProductBoard, AboutUs, Login, Register,ProductCreate, NotFound],
+  imports: [RouterOutlet, Home, Header, Footer, ProductBoard, AboutUs, Login, Register, ProductCreate, NotFound, ErrorNotification],
   templateUrl: './app.html',
   styleUrl: './app.css'
 })
