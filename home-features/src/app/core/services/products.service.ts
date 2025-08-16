@@ -25,9 +25,7 @@ export class ProductService {
         productDescription: string) {
         const body = JSON.stringify({ productName, productCategory, productPrice, productColor, productDimensions, productDescription });
         return this.httpClient.post<Product>(this.apiUrl, body, {
-            headers: {
-                'Content-Type': 'application/json'
-            }
+            withCredentials: true,
         })
     }
 }
