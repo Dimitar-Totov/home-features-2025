@@ -6,7 +6,7 @@ import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } 
 
 @Component({
   selector: 'app-product-create',
-  imports: [FormsModule,ReactiveFormsModule],
+  imports: [FormsModule, ReactiveFormsModule],
   templateUrl: './product-create.html',
   styleUrl: './product-create.css',
   standalone: true,
@@ -16,7 +16,7 @@ export class ProductCreate {
 
   constructor() {
     this.productFormGroup = new FormGroup({
-      name: new FormControl('',[Validators.minLength(5)]),
+      name: new FormControl('', [Validators.minLength(5)]),
       category: new FormControl(''),
       price: new FormControl(''),
       color: new FormControl(''),
@@ -35,11 +35,14 @@ export class ProductCreate {
   }
 
   onSubmit(): void {
-    const response = this.productService.createProduct();
-    response.subscribe((product: Product) => {
-      if (product) {
-        this.router.navigate(['/catalog']);
+    this.productService.createProduct(this.name, this.category, this.price, this.color, this.dimensions, this.description).subscribe({
+      next: () => {
+        this.router.navigate(['/catalog'])
+      },
+      error: (err) => {
+        console.log(err);
       }
     })
+
   }
 }
