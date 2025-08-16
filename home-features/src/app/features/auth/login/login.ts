@@ -69,13 +69,15 @@ export class Login {
 
     if (this.isFormValid()) {
       const { email, password } = this.loginForm.value;
-      const response = this.authService.login(email, password);
-
-      if (response === true) {
-        this.markFormGroupTouched();
-      } else {
-        this.router.navigate(['/']);
-      }
+      this.authService.login(email, password).subscribe({
+        next: () => {
+          this.router.navigate(['/']);
+        },
+        error: (err) => {
+          console.log(err);
+          this.markFormGroupTouched();
+        }
+      }); 
     }
   }
 

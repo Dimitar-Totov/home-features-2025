@@ -113,14 +113,15 @@ export class Register {
     if (this.registerForm.valid) {
       const { username, email } = this.registerForm.value;
       const { password, rePassword } = this.registerForm.value.passwords;
-      const response = this.authService.register(username, email, password, rePassword);
-
-      if (response === true) {
-        this.router.navigate(['/']);
-      } else {
-        this.markFormGroupTouched();
-      }
-
+      this.authService.register(username, email, password, rePassword).subscribe({
+        next: () => {
+          this.router.navigate(['/']);
+        },
+        error: (err) => {
+          console.log(err);
+          this.markFormGroupTouched();
+        }
+      });
     }
   }
 
