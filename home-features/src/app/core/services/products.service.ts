@@ -7,7 +7,7 @@ import { Product } from "../../models";
 @Injectable({ providedIn: 'root' })
 
 export class ProductService {
-    private apiUrl = 'http://localhost:3000/api/products';
+    private apiUrl = 'http://localhost:3000/api/catalog';
 
     constructor(private httpClient: HttpClient) {
 
@@ -15,6 +15,10 @@ export class ProductService {
 
     getProducts(): Observable<Product[]> {
         return this.httpClient.get<Product[]>(this.apiUrl);
+    }
+
+    getProduct(productId: string): Observable<Product>{
+        return this.httpClient.get<Product>(`${this.apiUrl}/${productId}/details`)
     }
 
     createProduct(productName: string,
