@@ -1,6 +1,6 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { Product } from '../../../models';
-import { AuthService, ProductService } from '../../../core/services';
+import { ProductService } from '../../../core/services';
 import { RouterLink } from '@angular/router';
 
 @Component({
@@ -12,8 +12,6 @@ import { RouterLink } from '@angular/router';
 })
 export class ProductBoard implements OnInit {
   products: Product[] = [];
-  private authService = inject(AuthService);
-  readonly isLoggedIn = this.authService.isLoggedIn;
 
   constructor(private productService: ProductService) {
   }
