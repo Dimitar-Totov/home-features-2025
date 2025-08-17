@@ -11,7 +11,7 @@ export const httpErrorInterceptor: HttpInterceptorFn = (req, next) => {
       if (error.status === 401) {
         router.navigate(['/login']);
       }
-      alert(`Error ${error.status}`);
+      window.alert(`Error ${error.status}`);
 
       return throwError(() => error)
     })
