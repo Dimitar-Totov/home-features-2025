@@ -35,7 +35,8 @@ export class ProductCreate {
   }
 
   onSubmit(): void {
-    this.productService.createProduct(this.name, this.category, this.price, this.color, this.dimensions, this.description).subscribe({
+    const productData = this.productFormGroup.value;
+    this.productService.createProduct(productData.name, productData.category, productData.price, productData.color, productData.dimensions, productData.description).subscribe({
       next: () => {
         this.router.navigate(['/catalog'])
       },

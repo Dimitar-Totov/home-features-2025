@@ -3,7 +3,7 @@
         <article class="container">
             <section class="name">
                 <label for="product-name">Product Name</label>
-                <input type="text" [(ngModel)]="product.name" formControlName="name" name="product-name"
+                <input type="text" formControlName="name" name="product-name"
                     id="product-name" required>
                 @if(productFormGroup.get('product-name')?.touched ||
                 productFormGroup.get('product-name')?.dirty &&
@@ -15,27 +15,27 @@
             </section>
             <section class="category">
                 <label for="product-category">Product Category</label>
-                <input type="text" [(ngModel)]="product.category" formControlName="category"
+                <input type="text" formControlName="category"
                     name="product-category" id="product-category" required>
             </section>
             <section class="price">
                 <label for="product-price">Product Price</label>
-                <input type="text" [(ngModel)]="product.price" formControlName="price" name="product-price"
+                <input type="text" formControlName="price" name="product-price"
                     id="product-price" required>
             </section>
             <section class="color">
                 <label for="product-color">Product Color</label>
-                <input type="text" [(ngModel)]="product.color" formControlName="color" name="product-color"
+                <input type="text" formControlName="color" name="product-color"
                     id="product-color" required>
             </section>
             <section class="dimensions">
                 <label for="product-dimensions">Product Dimensions</label>
-                <input type="text" [(ngModel)]="product.dimensions" formControlName="dimensions"
+                <input type="text" formControlName="dimensions"
                     name="product-dimensions" id="product-dimensions" required>
             </section>
             <section class="description">
                 <label for="product-description">Product Description</label>
-                <textarea [(ngModel)]="product.description" formControlName="description"
+                <textarea formControlName="description"
                     name="product-description" id="product-description" required></textarea>
             </section>
         </article>
