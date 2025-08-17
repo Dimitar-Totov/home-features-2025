@@ -2,15 +2,23 @@
     <form class="register-form" [formGroup]="registerForm" (ngSubmit)="onSubmit()">
         <img src="https://static.vecteezy.com/system/resources/thumbnails/054/563/337/small_2x/orange-profile-icon-png.png"
             alt="Avatar">
-
+        @if(httpError){
+        <p class="http-error">{{httpError}}</p>
+        }
         <div class="username">
             <i class="fas fa-user"></i>
             <input type="text" id="username" placeholder="Username" formControlName="username" required>
+            @if(usernameErrorMessage){
+            <p class="error-message">{{usernameErrorMessage}}</p>
+            }
         </div>
 
         <div class="email">
             <i class="fa-solid fa-envelope"></i>
             <input type="email" id="email" placeholder="Email" formControlName="email" required>
+            @if(emailErrorMessage){
+            <p class="error-message">{{emailErrorMessage}}</p>
+            }
         </div>
 
         <div formGroupName="passwords">
@@ -20,6 +28,9 @@
                     formControlName="password" required />
                 <i class="fas" [class.fa-eye]="showPassword" [class.fa-eye-slash]="!showPassword"
                     (click)="togglePassword()"></i>
+                @if(passwordErrorMessage){
+                <p class="error-message">{{passwordErrorMessage}}</p>
+                }
             </div>
 
             <div class="confirm-password">

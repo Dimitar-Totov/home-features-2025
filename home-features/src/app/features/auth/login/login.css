@@ -34,13 +34,19 @@
             border-radius: 0.3em;
             border: none;
 
-            &:first-of-type{
+            &:first-of-type {
                 margin-bottom: 1em;
             }
 
             &:focus {
                 outline: none;
             }
+        }
+
+        .error-message {
+            margin: 0 0 0.5em 0;
+            font-style: italic;
+            white-space: pre-wrap;
         }
 
         .user,
@@ -62,7 +68,7 @@
 
     .signup-text {
         font-family: Winky Rough, sans-serif;
-        
+
         a {
             text-decoration: none;
             color: #10898d;
