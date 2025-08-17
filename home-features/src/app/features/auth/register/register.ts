@@ -1,12 +1,12 @@
 import { Component, inject } from '@angular/core';
 import { Router, RouterLink } from '@angular/router';
 import { AuthService } from '../../../core/services';
-import { AbstractControl, FormGroup, FormsModule, ValidationErrors, Validators } from '@angular/forms';
+import { AbstractControl, FormGroup, FormsModule, ReactiveFormsModule, ValidationErrors } from '@angular/forms';
 import { RegisterFormService } from '../forms/register.form';
 
 @Component({
   selector: 'app-register',
-  imports: [RouterLink, FormsModule],
+  imports: [RouterLink, ReactiveFormsModule, FormsModule],
   templateUrl: './register.html',
   styleUrl: './register.css',
   standalone: true,
@@ -16,6 +16,11 @@ export class Register {
   private authService = inject(AuthService);
   private router = inject(Router);
   private registerFormService = inject(RegisterFormService);
+
+  usernameErrorMessage: string = '';
+  passwordErrorMessage: string = '';
+  emailErrorMessage: string = '';
+  httpError: string = '';
 
   registerForm: FormGroup;
 
@@ -43,62 +48,6 @@ export class Register {
     return this.passwords.get('rePassword');
   }
 
-  get isUsernameValid(): boolean {
-    return this.username?.invalid && (this.username?.dirty || this.username?.touched) || false;
-  }
-
-  get usernameErrorMessage(): string {
-    if (this.username?.errors?.['minlength']) {
-      return 'Username must be at least 5 characters!';
-    }
-
-    return '';
-  }
-
-  get isEmailValid(): boolean {
-    return this.email?.invalid && (this.email?.dirty || this.email?.touched) || false;
-  }
-
-  get emailErrorMessage(): string {
-    if (this.email?.errors?.['email']) {
-      return 'Email is not valid!';
-    }
-
-    if (this.email?.errors?.['minlength']) {
-      return 'Email must be at least 5 characters!';
-    }
-
-    return '';
-  }
-
-  get isPasswordsValid(): boolean {
-    return this.passwords?.invalid && (this.passwords?.dirty || this.passwords?.touched) || false;
-  }
-
-  get passwordErrorMessage(): string {
-    if (this.password?.errors?.['minlength']) {
-      return 'Password must be at least 5 characters!';
-    }
-
-    if (this.password?.errors?.['pattern']) {
-      return 'Password is not valid!';
-    }
-
-    if (this.password?.errors?.['passwordMismatch']) {
-      return 'Passwords do not match!';
-    }
-
-    return '';
-  }
-
-  get rePasswordErrorMessage(): string {
-    if (this.password?.errors?.['passwordMismatch']) {
-      return 'Passwords do not match!';
-    }
-
-    return '';
-  }
-
   togglePassword(): void {
     this.showPassword = !this.showPassword;
   }
@@ -118,10 +67,43 @@ export class Register {
           this.router.navigate(['/']);
         },
         error: (err) => {
-          console.log(err);
+          if (err.status === 409) {
+            this.httpError = 'This email is already registered.\n Please use a different one!';
+          } else {
+            this.httpError = 'An unexpected error occurred.\n Please try again later!';
+          }
+          setTimeout(() => this.httpError = '', 5000);
           this.markFormGroupTouched();
         }
       });
+    } else {
+      const usernameError = this.registerForm.get('username');
+      const emailError = this.registerForm.get('email');
+      const passwordInput = this.registerForm.get('passwords.password');
+      const rePasswordInput = this.registerForm.get('passwords.rePassword');
+
+      if (usernameError?.hasError('minlength')) {
+        this.usernameErrorMessage = 'Username must be\n at least 5 characters!';
+      }
+
+      if (emailError?.errors?.['pattern']) {
+        this.emailErrorMessage = 'Please enter a valid Gmail address\n (at least 6 characters, starts\n with a letter, and ends with\n @gmail.com or @gmail.bg)!'
+      }
+
+      if (passwordInput?.errors?.['pattern']) {
+        this.passwordErrorMessage = "Password must be at least\n 6 characters long and contain\n at least one special character!";
+      }
+
+      if (rePasswordInput?.value !== passwordInput?.value) {
+        this.passwordErrorMessage = 'Passwords do not match!'
+      }
+
+      setTimeout(() => {
+        this.usernameErrorMessage = '';
+        this.passwordErrorMessage = '';
+        this.emailErrorMessage = '';
+      }, 5000);
+
     }
   }
 
@@ -137,16 +119,5 @@ export class Register {
         control?.markAllAsTouched();
       }
     })
-  }
-
-  private passwordMatchValidator(passwordsControl: AbstractControl): ValidationErrors | null {
-    const password = passwordsControl.get('password');
-    const rePassword = passwordsControl.get('rePassword');
-
-    if (password && rePassword && password.value !== rePassword.value) {
-      return { passwordMismatch: true }
-    }
-
-    return null;
   }
 }

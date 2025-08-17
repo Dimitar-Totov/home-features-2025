@@ -1,11 +1,11 @@
 import { Component, inject } from '@angular/core';
 import { Router, RouterLink } from '@angular/router';
 import { AuthService } from '../../../core/services';
-import { FormBuilder, FormGroup, FormsModule, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-login',
-  imports: [RouterLink, FormsModule],
+  imports: [RouterLink, FormsModule, ReactiveFormsModule],
   templateUrl: './login.html',
   styleUrl: './login.css',
   standalone: true,
@@ -16,12 +16,14 @@ export class Login {
   private router = inject(Router);
   private formBuilder = inject(FormBuilder);
 
+  errorMessage: string = '';
+
   loginForm: FormGroup;
 
   constructor() {
     this.loginForm = this.formBuilder.group({
-      email: ['', [Validators.email]],
-      password: ['', [Validators.minLength(5)]],
+      email: ['', [Validators.pattern(/^(?=.{6,})[a-zA-Z][a-zA-Z0-9._-]*@gmail\.(com|bg)$/)]],
+      password: ['', [Validators.pattern(/^(?=.*[!@#$%^&*])[A-Za-z0-9!@#$%^&*]{6,}$/)]],
     })
   }
 
@@ -31,30 +33,6 @@ export class Login {
 
   get password() {
     return this.loginForm.get('password');
-  }
-
-  get emailError(): boolean {
-    return this.email?.invalid && (this.email?.dirty || this.email?.touched) || false;
-  }
-
-  get emailErrorMessage(): string {
-    if (this.email?.errors?.['email']) {
-      return 'Email is not valid!';
-    }
-
-    return '';
-  }
-
-  get passwordError(): boolean {
-    return this.password?.invalid && (this.password?.dirty || this.password?.touched) || false;
-  }
-
-  get passwordErrorMessage(): string {
-    if (this.password?.errors?.['minlength']) {
-      return 'Password must be at least 5 characters!';
-    }
-
-    return '';
   }
 
   isFormValid(): boolean {
@@ -74,10 +52,14 @@ export class Login {
           this.router.navigate(['/']);
         },
         error: (err) => {
-          console.log(err);
+          this.errorMessage = 'Invalid email or password\n Please try again!';
+          setTimeout(() => this.errorMessage = '', 5000);
           this.markFormGroupTouched();
         }
-      }); 
+      });
+    } else {
+      this.errorMessage = 'Invalid email or password\n Please try again!';
+      setTimeout(() => this.errorMessage = '', 5000);
     }
   }
 

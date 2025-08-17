@@ -9,10 +9,10 @@ export class RegisterFormService {
     createForm(): FormGroup {
         return this.formBuilder.group({
             username: ['', [Validators.minLength(5)]],
-            email: ['', [Validators.minLength(5), Validators.pattern(/^(?=.{6,})[a-zA-Z][a-zA-Z0-9._-]*@gmail\.(com|bg)$/)]],
+            email: ['', [Validators.pattern(/^(?=.{6,})[a-zA-Z][a-zA-Z0-9._-]*@gmail\.(com|bg)$/)]],
             passwords: this.formBuilder.group({
-                password: ['', [Validators.minLength(5), Validators.pattern(/^[a-zA-Z0-9]+$/)]],
-                rePassword: ['', [this.passwordMatchValidator]],
+                password: ['', [Validators.pattern(/^(?=.*[!@#$%^&*])[A-Za-z0-9!@#$%^&*]{6,}$/)]],
+                rePassword: [''],
             }),
         })
     }
@@ -23,16 +23,5 @@ export class RegisterFormService {
 
     getEmail(form: FormGroup): AbstractControl<any, any> | null {
         return form.get('email');
-    }
-
-    private passwordMatchValidator(passwordsControl: AbstractControl): ValidationErrors | null {
-        const password = passwordsControl.get('password');
-        const rePassword = passwordsControl.get('rePassword');
-
-        if (password && rePassword && password.value !== rePassword.value) {
-            return { passwordMismatch: true }
-        }
-
-        return null;
     }
 }
