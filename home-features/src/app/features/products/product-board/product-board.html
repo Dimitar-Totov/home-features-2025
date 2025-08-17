@@ -1,22 +1,18 @@
 <div class="board-container">
-    @for(product of products; track product.name){
+    @for(product of products; track product._id){
     <article class="product">
         <div class="media">
             <img [src]="product.imageUrl" [alt]="product.name">
         </div>
         <div class="info">
-            <p>Name: {{product.name}}</p>
-            <p>Category: {{product.category}}</p>
-            <p>Price: {{product.price}}</p>
-            <p>Color: <span>{{product.color}}</span></p>
-            <p>Dimensions: {{product.dimensions}}</p>
-            <p>Description: {{product.description}}</p>
+            <p>{{product.name}}</p>
         </div>
-        @if(isLoggedIn()){
         <div class="product-details">
             <a [routerLink]="['/catalog', product._id, 'details']">Details</a>
         </div>
-        }
     </article>
+    }
+    @empty{
+    <p class="error-message">No products available.</p>
     }
 </div>
