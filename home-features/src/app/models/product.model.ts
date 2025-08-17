@@ -6,4 +6,5 @@ export interface Product {
   color: string;
   dimensions: string;
   description: string;
+  _id: number;
 }
