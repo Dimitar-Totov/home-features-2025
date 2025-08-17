@@ -16,6 +16,6 @@ router.use('/themes', themes);
 router.use('/posts', posts);
 router.use('/likes', likes);
 router.use('/test', test);
-router.use('/products', products);
+router.use('/catalog', products);
 
 module.exports = router;

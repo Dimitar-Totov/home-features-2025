@@ -4,6 +4,7 @@ const router = express.Router();
 const data = [
     {
         "name": "Bonzy Home",
+        "_id": "64f3c5e29e7a8bc1234567890",
         "category": "chair",
         "imageUrl": "https://m.media-amazon.com/images/I/81CeoezcGHL.jpg",
         "price": "80$",
@@ -13,6 +14,7 @@ const data = [
     },
     {
         "name": "Kitchen Table Dining",
+        "_id": "64f3c5e29e7a8bc1234567891",
         "category": "table",
         "imageUrl": "https://www.overstock.com/cdn/shop/files/Kitchen-Table-Dining-Table-for-4-with-Storage-Shelf-Metal-Legs-Wood-Table-Top-for-Home-Dining-Room-Living-Room_1141131c-1600-4c0f-9a8c-105793aa4981.jpg?v=1718287712&width=1214",
         "price": "150$",
@@ -22,6 +24,7 @@ const data = [
     }, 
     {
         "name": "Amalfi",
+        "_id": "64f3c5e29e7a8bc1234567895",
         "category": "bed",
         "imageUrl": "https://www.danetti.com/cdn/shop/files/AmalfiLuxeSageLifestyleSide.jpg?v=1743669339&width=1946",
         "price": "900$",
@@ -34,6 +37,17 @@ const data = [
 router.get('/', function (req, res) {
 
     res.send(data);
-})
+});
+
+router.get('/:productId/details', function (req, res) {
+  const { productId } = req.params;
+  const product = data.find(p => p._id === productId);
+
+  if (!product) {
+    return res.status(404).json({ message: "Product not found" });
+  }
+
+  res.json(product);
+});
 
 module.exports = router
