@@ -13,6 +13,7 @@ import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } 
 export class ProductCreate {
   productFormGroup: FormGroup;
 
+  
   constructor() {
     this.productFormGroup = new FormGroup({
       name: new FormControl('', [Validators.minLength(5)]),
@@ -23,11 +24,13 @@ export class ProductCreate {
       description: new FormControl(''),
     })
   }
-
+  
   private authService = inject(AuthService);
   private productService = inject(ProductService);
   private router = inject(Router);
-
+  
+  readonly isLoggedIn = this.authService.isLoggedIn();
+  readonly currentUser = this.authService.currentUser();
 
   onCancel(): void {
     this.router.navigate(['/']);
@@ -35,8 +38,8 @@ export class ProductCreate {
 
   onSubmit(): void {
     const productData = this.productFormGroup.value;
-
-    this.productService.createProduct(productData).subscribe({
+    const ownerId = this.currentUser?.id;
+    this.productService.createProduct(productData,ownerId!).subscribe({
       next: () => {
         this.router.navigate(['/catalog'])
       },
