@@ -21,8 +21,8 @@ export class ProductService {
         return this.httpClient.get<Product>(`${this.apiUrl}/${productId}/details`)
     }
 
-    createProduct(productData: {}): Observable<Product> {
-        return this.httpClient.post<Product>(this.apiUrl, productData, {
+    createProduct(productData: {}, ownerId: string): Observable<Product> {
+        return this.httpClient.post<Product>(this.apiUrl, { ...productData, ownerId }, {
             withCredentials: true,
         })
     }

@@ -7,4 +7,5 @@ export interface Product {
   dimensions: string;
   description: string;
   _id: number;
+  ownerId: string;
 }
