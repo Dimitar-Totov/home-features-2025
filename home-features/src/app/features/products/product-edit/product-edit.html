@@ -1,0 +1,45 @@
+<div class="product-edit">
+    <form [formGroup]="productFormGroup" (ngSubmit)="onSubmit()">
+        <article class="container">
+            <section class="name">
+                <label for="product-name">Product Name</label>
+                <input type="text" formControlName="name" name="product-name" id="product-name" required>
+                @if(productFormGroup.get('product-name')?.touched ||
+                productFormGroup.get('product-name')?.dirty &&
+                productFormGroup.get('product-name')?.errors?.['minLength']){
+                <div alert alert-danger>
+                    Minimal length is 5 !
+                </div>
+                }
+            </section>
+            <section class="category">
+                <label for="product-category">Product Category</label>
+                <input type="text" formControlName="category" name="product-category" id="product-category" required>
+            </section>
+            <section class="price">
+                <label for="product-price">Product Price</label>
+                <input type="text" formControlName="price" name="product-price" id="product-price" required>
+            </section>
+            <section class="color">
+                <label for="product-color">Product Color</label>
+                <input type="text" formControlName="color" name="product-color" id="product-color" required>
+            </section>
+            <section class="dimensions">
+                <label for="product-dimensions">Product Dimensions</label>
+                <input type="text" formControlName="dimensions" name="product-dimensions" id="product-dimensions"
+                    required>
+            </section>
+            <section class="description">
+                <label for="product-description">Product Description</label>
+                <textarea formControlName="description" name="product-description" id="product-description"
+                    required></textarea>
+            </section>
+        </article>
+        <button type="submit">Edit</button>
+        <a [routerLink]="['/catalog']" id="cancel">Cancel</a>
+    </form>
+</div>
+
+<!-- TODO: API DOESNT WORK -->
+
+<!-- TODO: ADD CANCEL BUTTON -->
