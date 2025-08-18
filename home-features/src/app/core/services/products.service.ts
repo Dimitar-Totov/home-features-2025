@@ -17,19 +17,21 @@ export class ProductService {
         return this.httpClient.get<Product[]>(this.apiUrl);
     }
 
-    getProduct(productId: string): Observable<Product>{
+    getProduct(productId: string): Observable<Product> {
         return this.httpClient.get<Product>(`${this.apiUrl}/${productId}/details`)
     }
 
-    createProduct(productName: string,
-        productCategory: string,
-        productPrice: string,
-        productColor: string,
-        productDimensions: string,
-        productDescription: string) {
-        const body = JSON.stringify({ productName, productCategory, productPrice, productColor, productDimensions, productDescription });
-        return this.httpClient.post<Product>(this.apiUrl, body, {
+    createProduct(productData: {}): Observable<Product> {
+        return this.httpClient.post<Product>(this.apiUrl, productData, {
             withCredentials: true,
         })
+    }
+
+    editProduct(productData: {}, productId: string): Observable<Product> {
+        return this.httpClient.put<Product>(`${this.apiUrl}/${productId}/edit`, productData, { withCredentials: true });
+    }
+
+    deleteProduct(productId: string) {
+        return this.httpClient.delete(`${this.apiUrl}/${productId}`);
     }
 }
