@@ -34,7 +34,7 @@
             display: flex;
             justify-content: space-around;
 
-            button {
+            button,a {
                 padding: 0.5em 2em;
                 border: none;
                 border-radius: 0.4em;
@@ -43,6 +43,8 @@
             #edit {
                 background-color: #10898d;
                 color: #fff;
+                margin-right: 1em;
+                text-decoration: none;
 
                 &:hover {
                     box-shadow: 0 0 1em 0 rgba(16, 137, 141, 0.8);
