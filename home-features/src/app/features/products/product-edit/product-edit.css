@@ -14,16 +14,33 @@
         padding: 3em;
         gap: 1.4em;
 
-        button {
-            padding: 0.7em 2em;
-            border: none;
-            border-radius: 0.4em;
-            background-color: #fff;
-            transition: background-color 0.3s;
+        .buttons {
+            display: flex;
+            gap: 3em;
 
-            &:hover {
+            button {
+                padding: 0.7em 2em;
+                border: none;
+                border-radius: 0.4em;
+                background-color: #10898d;
                 color: #fff;
-                background-color: orange;
+
+                &:hover {
+                    box-shadow: 0 0 1em 0 rgba(16, 137, 141, 0.8);
+                }
+            }
+
+            a {
+                text-decoration: none;
+                padding: 0.5em 1.3em;
+                border: none;
+                border-radius: 0.4em;
+                background-color: red;
+                color: #fff;
+
+                &:hover {
+                    box-shadow: 0 0 1em 0 rgba(243, 6, 14, 0.8);
+                }
             }
         }
 
@@ -61,8 +78,6 @@
                     }
                 }
             }
-
         }
     }
-
 }
