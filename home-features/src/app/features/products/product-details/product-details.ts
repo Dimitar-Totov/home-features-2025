@@ -10,20 +10,27 @@ import { Product } from '../../../models';
   styleUrl: './product-details.css'
 })
 export class ProductDetails implements OnInit {
-  product: Product = { name: '', category: '', price: '', description: '', dimensions: '', imageUrl: '', color: '', _id: 0 };
+  product: Product = { name: '', category: '', price: '', description: '', dimensions: '', imageUrl: '', color: '', _id: 0, ownerId: '' };
   productId!: string;
+  isOwner: boolean = false;
+
   private router = inject(Router);
 
   private authService = inject(AuthService);
+  readonly currentUser = this.authService.currentUser();
 
   constructor(private productService: ProductService, private route: ActivatedRoute) { }
 
   ngOnInit(): void {
     this.productId = this.route.snapshot.paramMap.get('productId')!;
     this.productService.getProduct(this.productId).subscribe({
-      next: (data) => this.product = data,
+      next: (data) => {
+        this.product = data;
+        this.isOwner = this.currentUser?.id === this.product.ownerId;
+      },
       error: (err) => console.log(err),
-    })
+    });
+
   }
 
   deleteButton(): void {
