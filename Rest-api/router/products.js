@@ -1,7 +1,8 @@
 const express = require('express');
 const router = express.Router();
+const { v4: uuidv4 } = require("uuid");
 
-const data = [
+let data = [
     {
         "name": "Bonzy Home",
         "_id": "64f3c5e29e7a8bc1234567890",
@@ -21,7 +22,7 @@ const data = [
         "color": "Brown",
         "dimensions": "47.25 In. L X 47.25 In. W X 29.5 In. H",
         "description": "This kitchen table dining table is perfect for cozy meals with loved ones. It comfortably seats 4 people and features a convenient storage shelf underneath the tabletop, perfect for storing placemats or napkins. The metal legs offer sturdy support, while the wood tabletop adds a touch of warmth to your dining room or living room. This table is a great addition to any home looking for both practicality and style.",
-    }, 
+    },
     {
         "name": "Amalfi",
         "_id": "64f3c5e29e7a8bc1234567895",
@@ -40,14 +41,44 @@ router.get('/', function (req, res) {
 });
 
 router.get('/:productId/details', function (req, res) {
-  const { productId } = req.params;
-  const product = data.find(p => p._id === productId);
+    const { productId } = req.params;
+    const product = data.find(p => p._id === productId);
 
-  if (!product) {
-    return res.status(404).json({ message: "Product not found" });
-  }
+    if (!product) {
+        return res.status(404).json({ message: "Product not found" });
+    }
 
-  res.json(product);
+    res.json(product);
 });
+
+router.put('/:productId/edit', function (req, res) {
+    const { productId } = req.params;
+    const productData = req.body;
+
+    const index = data.findIndex(p => p._id === productId);
+
+    if (index === -1) {
+        return res.status(404).json({ message: "Product not found" });
+    }
+    data[index] = { ...data[index], ...productData };
+    res.json({ message: "Product updated successfully!" });
+});
+
+router.delete('/:productId', function (req, res) {
+    const { productId } = req.params;
+    data = data.filter(item => item._id !== productId);
+
+    res.json({ message: "Deleted successfully" });
+});
+
+router.post('/', function (req, res) {
+    const newProduct = {
+        _id: uuidv4(),
+        ...req.body,
+    }
+    data.push(newProduct);
+
+    res.status(201).json({ message: "Product is created successfully!" });
+})
 
 module.exports = router
