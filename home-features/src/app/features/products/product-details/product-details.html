@@ -15,8 +15,8 @@
         <hr>
         <p><span>Description</span>: {{product.description}}</p>
         <div class="buttons">
-            <button id="edit">Edit</button>
-            <button id="delete">Delete</button>
+            <a [routerLink]="['/catalog', product._id, 'edit']" id="edit">Edit</a>
+            <button id="delete" (click)="deleteButton()">Delete</button>
         </div>
     </div>
 </div>
