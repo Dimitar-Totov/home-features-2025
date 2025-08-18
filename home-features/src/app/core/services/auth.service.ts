@@ -40,6 +40,7 @@ export class AuthService {
             tap(user => {
                 this._currentUser.set(user);
                 this._isLoggedIn.set(true);
+
                 localStorage.setItem('currentUser', JSON.stringify(user));
             })
         )
