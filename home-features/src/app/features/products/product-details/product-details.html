@@ -1,5 +1,6 @@
 <div class="product-container">
     <div class="media">
+        <p>Total Likes: <i class="fa-regular fa-heart"></i></p>
         <img src="{{product.imageUrl}}" alt="product.name">
     </div>
     <div class="content">
@@ -14,9 +15,11 @@
         <p><span>Dimensions</span>: {{product.dimensions}}</p>
         <hr>
         <p><span>Description</span>: {{product.description}}</p>
+        @if(isOwner){
         <div class="buttons">
             <a [routerLink]="['/catalog', product._id, 'edit']" id="edit">Edit</a>
             <button id="delete" (click)="deleteButton()">Delete</button>
         </div>
+        }
     </div>
 </div>
