@@ -1,7 +1,6 @@
 import { Component, inject } from '@angular/core';
 import { AuthService, ProductService } from '../../../core/services';
 import { Router } from '@angular/router';
-import { Product } from '../../../models';
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 
 @Component({
@@ -36,7 +35,8 @@ export class ProductCreate {
 
   onSubmit(): void {
     const productData = this.productFormGroup.value;
-    this.productService.createProduct(productData.name, productData.category, productData.price, productData.color, productData.dimensions, productData.description).subscribe({
+
+    this.productService.createProduct(productData).subscribe({
       next: () => {
         this.router.navigate(['/catalog'])
       },
@@ -44,6 +44,5 @@ export class ProductCreate {
         console.log(err);
       }
     })
-
   }
 }
