@@ -3,40 +3,47 @@
         <article class="container">
             <section class="name">
                 <label for="product-name">Product Name</label>
-                <input type="text" formControlName="name" name="product-name"
-                    id="product-name" required>
-                @if(productFormGroup.get('product-name')?.touched ||
-                productFormGroup.get('product-name')?.dirty &&
-                productFormGroup.get('product-name')?.errors?.['minLength']){
-                <div alert alert-danger>
-                    Minimal length is 5 !
-                </div>
+                <input type="text" formControlName="name" name="product-name" id="product-name" required>
+                @if(nameErrorMessage){
+                <span>{{nameErrorMessage}}</span>
                 }
             </section>
             <section class="category">
                 <label for="product-category">Product Category</label>
-                <input type="text" formControlName="category"
-                    name="product-category" id="product-category" required>
+                <input type="text" formControlName="category" name="product-category" id="product-category" required>
+                @if(categoryErrorMessage){
+                <span>{{categoryErrorMessage}}</span>
+                }
             </section>
             <section class="price">
                 <label for="product-price">Product Price</label>
-                <input type="text" formControlName="price" name="product-price"
-                    id="product-price" required>
+                <input type="text" formControlName="price" name="product-price" id="product-price" required>
+                @if(priceErrorMessage){
+                <span>{{priceErrorMessage}}</span>
+                }
             </section>
             <section class="color">
                 <label for="product-color">Product Color</label>
-                <input type="text" formControlName="color" name="product-color"
-                    id="product-color" required>
+                <input type="text" formControlName="color" name="product-color" id="product-color" required>
+                @if(colorErrorMessage){
+                <span>{{colorErrorMessage}}</span>
+                }
             </section>
             <section class="dimensions">
                 <label for="product-dimensions">Product Dimensions</label>
-                <input type="text" formControlName="dimensions"
-                    name="product-dimensions" id="product-dimensions" required>
+                <input type="text" formControlName="dimensions" name="product-dimensions" id="product-dimensions"
+                    required>
+                @if(dimensionsErrorMessage){
+                <span>{{dimensionsErrorMessage}}</span>
+                }
             </section>
             <section class="description">
                 <label for="product-description">Product Description</label>
-                <textarea formControlName="description"
-                    name="product-description" id="product-description" required></textarea>
+                <textarea formControlName="description" name="product-description" id="product-description"
+                    required></textarea>
+                @if(descriptionErrorMessage){
+                <span>{{descriptionErrorMessage}}</span>
+                }
             </section>
         </article>
         <button type="submit">Create</button>
