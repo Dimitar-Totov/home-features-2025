@@ -26,10 +26,6 @@
 
         p {
             margin: 0;
-
-            &:last-of-type {
-                margin-bottom: 3em;
-            }
         }
 
         hr {
@@ -39,17 +35,13 @@
         span {
             font-weight: bold;
             font-size: 1.2em;
-
-            &~.like-button {
-                font-family: Nata Sans, sans-serif;
-            }
         }
 
         .like-button {
             font-size: 2.5em;
             border: none;
             background-color: #FAF0E6;
-            margin-left: 0.6em;
+            margin-left: 0.3em;
             color: orange;
 
             &:hover {
@@ -58,7 +50,6 @@
         }
 
         .liked-error{
-            margin-top: 3em;
             color: red;
         }
 

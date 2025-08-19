@@ -18,10 +18,11 @@ export class ProductCreate {
     this.productFormGroup = new FormGroup({
       name: new FormControl('', [Validators.pattern(/^[A-Za-z]{5,}$/), Validators.required]),
       category: new FormControl('', [Validators.pattern(/^[A-Za-z]{3,}$/)]),
-      price: new FormControl('', [Validators.pattern(/^1\d{1,}$/)]),
+      price: new FormControl('', [Validators.pattern(/^[1-9]\d*[$£]$/)]),
       color: new FormControl('', [Validators.pattern(/^[A-Za-z]{3,}$/)]),
       dimensions: new FormControl('', [Validators.pattern(/^[A-Za-z0-9]{1,15}$/)]),
-      description: new FormControl('', [Validators.pattern(/^[A-Za-z0-9.!]{10,}$/)]),
+      description: new FormControl('', [Validators.pattern(/^[A-Za-z0-9.!?]{10,}$/)]),
+      imageUrl: new FormControl('', [Validators.pattern(/^(https?:\/\/)[A-Za-z]{5,}.*$/), Validators.required]),
     })
   }
 
@@ -32,13 +33,13 @@ export class ProductCreate {
   readonly isLoggedIn = this.authService.isLoggedIn();
   readonly currentUser = this.authService.currentUser();
 
+  imageurlErrorMessage: string = '';
   nameErrorMessage: string = '';
   categoryErrorMessage: string = '';
   priceErrorMessage: string = '';
   colorErrorMessage: string = '';
   dimensionsErrorMessage: string = '';
   descriptionErrorMessage: string = '';
-
 
   onCancel(): void {
     this.router.navigate(['/']);
@@ -58,12 +59,20 @@ export class ProductCreate {
         }
       })
     } else {
+      const imageurlError = this.productFormGroup.get('imageUrl');
       const nameError = this.productFormGroup.get('name');
       const categoryError = this.productFormGroup.get('category');
       const priceError = this.productFormGroup.get('price');
       const colorError = this.productFormGroup.get('color');
       const dimensionsError = this.productFormGroup.get('dimensions');
       const descriptionError = this.productFormGroup.get('description');
+
+      if (imageurlError?.errors?.['pattern']) {
+        this.imageurlErrorMessage = 'Invalid url address!';
+      }
+      if (imageurlError?.hasError('required')) {
+        this.imageurlErrorMessage = 'URL Address is empty!'
+      }
 
       if (nameError?.errors?.['pattern']) {
         this.nameErrorMessage = 'The name of the product must contain only letters and be at least 5 characters long!';
@@ -80,7 +89,7 @@ export class ProductCreate {
       }
 
       if (priceError?.errors?.['pattern']) {
-        this.priceErrorMessage = 'The price of the product must contain only numbers and have at least 2 digits!';
+        this.priceErrorMessage = 'The price of the product must contain only numbers and have at least 2 digits which end with £ or $!';
       }
       if (priceError?.hasError('required')) {
         this.priceErrorMessage = 'Price field is empty!';
@@ -108,6 +117,7 @@ export class ProductCreate {
       }
 
       setTimeout(() => {
+        this.imageurlErrorMessage = '';
         this.nameErrorMessage = '';
         this.categoryErrorMessage = '';
         this.priceErrorMessage = '';

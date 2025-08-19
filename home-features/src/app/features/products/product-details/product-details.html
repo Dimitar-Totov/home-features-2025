@@ -22,6 +22,7 @@
         </div>
         }
         @if(!isOwner && isLoggedIn){
+        <hr>
         <span>Like this product</span>
         <button (click)="likeButton()" class="like-button"><i class="fa-regular fa-thumbs-up"></i></button>
         @if(alreadyLiked){

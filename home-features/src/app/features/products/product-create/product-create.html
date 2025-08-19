@@ -1,6 +1,13 @@
 <div class="product-create">
     <form [formGroup]="productFormGroup" (ngSubmit)="onSubmit()">
         <article class="container">
+            <section class="imageUrl">
+                <label for="product-image">Product Image Url</label>
+                <input type="text" formControlName="imageUrl" name="product-imageUrl" id="product-imageUrl" required>
+                @if(imageurlErrorMessage){
+                <span>{{imageurlErrorMessage}}</span>
+                }
+            </section>
             <section class="name">
                 <label for="product-name">Product Name</label>
                 <input type="text" formControlName="name" name="product-name" id="product-name" required>
