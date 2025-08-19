@@ -6,6 +6,7 @@ let data = [
     {
         "name": "Bonzy Home",
         "_id": "64f3c5e29e7a8bc1234567890",
+        "ownerId": "68a32a302d050027181925a5", // user:test123@gmail.com password:test123!
         "category": "chair",
         "imageUrl": "https://m.media-amazon.com/images/I/81CeoezcGHL.jpg",
         "price": "80$",
@@ -17,6 +18,7 @@ let data = [
     {
         "name": "Kitchen Table Dining",
         "_id": "64f3c5e29e7a8bc1234567891",
+        "ownerId": "68a32a302d050027181925a5", // user:test123@gmail.com password:test123!
         "category": "table",
         "imageUrl": "https://www.overstock.com/cdn/shop/files/Kitchen-Table-Dining-Table-for-4-with-Storage-Shelf-Metal-Legs-Wood-Table-Top-for-Home-Dining-Room-Living-Room_1141131c-1600-4c0f-9a8c-105793aa4981.jpg?v=1718287712&width=1214",
         "price": "150$",
@@ -28,6 +30,7 @@ let data = [
     {
         "name": "Amalfi",
         "_id": "64f3c5e29e7a8bc1234567895",
+        "ownerId": "68a32a302d050027181925a5", // user:test123@gmail.com password:test123!
         "category": "bed",
         "imageUrl": "https://www.danetti.com/cdn/shop/files/AmalfiLuxeSageLifestyleSide.jpg?v=1743669339&width=1946",
         "price": "900$",
