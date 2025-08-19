@@ -8,10 +8,10 @@ export class RegisterFormService {
 
     createForm(): FormGroup {
         return this.formBuilder.group({
-            username: ['', [Validators.minLength(5)]],
-            email: ['', [Validators.pattern(/^(?=.{6,})[a-zA-Z][a-zA-Z0-9._-]*@gmail\.(com|bg)$/)]],
+            username: ['', [Validators.minLength(5),Validators.required]],
+            email: ['', [Validators.pattern(/^(?=.{6,})[a-zA-Z][a-zA-Z0-9._-]*@gmail\.(com|bg)$/),Validators.required]],
             passwords: this.formBuilder.group({
-                password: ['', [Validators.pattern(/^(?=.*[!@#$%^&*])[A-Za-z0-9!@#$%^&*]{6,}$/)]],
+                password: ['', [Validators.pattern(/^(?=.*[!@#$%^&*])[A-Za-z0-9!@#$%^&*]{6,}$/),Validators.required]],
                 rePassword: [''],
             }),
         })

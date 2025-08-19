@@ -85,13 +85,22 @@ export class Register {
       if (usernameError?.hasError('minlength')) {
         this.usernameErrorMessage = 'Username must be\n at least 5 characters!';
       }
+      if(usernameError?.hasError('required')){
+        this.usernameErrorMessage = 'Username field is empty!'
+      }
 
       if (emailError?.errors?.['pattern']) {
         this.emailErrorMessage = 'Please enter a valid Gmail address\n (at least 6 characters, starts\n with a letter, and ends with\n @gmail.com or @gmail.bg)!'
       }
+      if(emailError?.hasError('required')){
+        this.emailErrorMessage = 'Email field is empty!'
+      }
 
       if (passwordInput?.errors?.['pattern']) {
         this.passwordErrorMessage = "Password must be at least\n 6 characters long and contain\n at least one special character!";
+      }
+      if(passwordInput?.hasError('required')){
+        this.passwordErrorMessage = 'Fill password fields!'
       }
 
       if (rePasswordInput?.value !== passwordInput?.value) {
