@@ -8,4 +8,5 @@ export interface Product {
   description: string;
   _id: number;
   ownerId: string;
+  likes: [];
 }

@@ -1,7 +1,8 @@
-import { Component, inject, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, inject, OnInit } from '@angular/core';
 import { AuthService, ProductService } from '../../../core/services';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { Product } from '../../../models';
+import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
   selector: 'app-product-details',
@@ -10,14 +11,16 @@ import { Product } from '../../../models';
   styleUrl: './product-details.css'
 })
 export class ProductDetails implements OnInit {
-  product: Product = { name: '', category: '', price: '', description: '', dimensions: '', imageUrl: '', color: '', _id: 0, ownerId: '' };
+  product: Product = { name: '', category: '', price: '', description: '', dimensions: '', imageUrl: '', color: '', _id: 0, ownerId: '', likes: [] };
   productId!: string;
   isOwner: boolean = false;
+  alreadyLiked: string = '';
 
   private router = inject(Router);
 
   private authService = inject(AuthService);
   readonly currentUser = this.authService.currentUser();
+  readonly isLoggedIn = this.authService.isLoggedIn();
 
   constructor(private productService: ProductService, private route: ActivatedRoute) { }
 
@@ -41,5 +44,19 @@ export class ProductDetails implements OnInit {
         error: (err) => console.log(err),
       })
     }
+  }
+
+  likeButton(): void {
+    this.productService.likeProduct(this.productId, this.currentUser?.id!).subscribe({
+      next: (updatedLikes: any) => {
+        this.product.likes = updatedLikes;
+      },
+      error: (err: HttpErrorResponse) => {
+        if(err.status === 409){
+          this.alreadyLiked = 'You have already liked this Product!';
+          setTimeout(() => this.alreadyLiked = '', 5000);
+        }
+      }
+    })
   }
 }

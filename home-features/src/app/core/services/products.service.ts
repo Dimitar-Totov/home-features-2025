@@ -27,6 +27,10 @@ export class ProductService {
         })
     }
 
+    likeProduct(productId: string, userId: string) {
+        return this.httpClient.put<Product>(`${this.apiUrl}/${productId}/like`, { userId }, { withCredentials: true });
+    }
+
     editProduct(productData: {}, productId: string): Observable<Product> {
         return this.httpClient.put<Product>(`${this.apiUrl}/${productId}/edit`, productData, { withCredentials: true });
     }

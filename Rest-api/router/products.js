@@ -12,6 +12,7 @@ let data = [
         "color": "Beige",
         "dimensions": "2.17 ft x 2.67 ft x 2.42 ft",
         "description": "Bonzy Home Modern Accent Chair, Lounge Single Sofa, Reading Armchair for Bedroom with Extra Thickened Seat, Solid Wooden Frame, Tub Occasional Chair, Beige",
+        "likes": [],
     },
     {
         "name": "Kitchen Table Dining",
@@ -22,6 +23,7 @@ let data = [
         "color": "Brown",
         "dimensions": "47.25 In. L X 47.25 In. W X 29.5 In. H",
         "description": "This kitchen table dining table is perfect for cozy meals with loved ones. It comfortably seats 4 people and features a convenient storage shelf underneath the tabletop, perfect for storing placemats or napkins. The metal legs offer sturdy support, while the wood tabletop adds a touch of warmth to your dining room or living room. This table is a great addition to any home looking for both practicality and style.",
+        "likes": [],
     },
     {
         "name": "Amalfi",
@@ -32,6 +34,7 @@ let data = [
         "color": "Sage Green",
         "dimensions": "251 In. L X 200 In. W X 37 In. H",
         "description": "The Amalfi Luxe sage green velvet king size ottoman storage bed is a luxurious and practical addition to any bedroom. Upholstered in a rich sage green velvet, this exclusive in-house design offers extra-deep storage accessed via a smooth, durable hydraulic lift mechanism.",
+        "likes": [],
     }
 ]
 
@@ -63,6 +66,18 @@ router.put('/:productId/edit', function (req, res) {
     data[index] = { ...data[index], ...productData };
     res.json({ message: "Product updated successfully!" });
 });
+
+router.put('/:productId/like', function (req, res) {
+    const { productId } = req.params;
+    const { userId } = req.body;
+
+    const obj = data.find(p => p._id === productId);
+    if (obj.likes.includes(userId)) {
+        return res.status(409).json({ message: "You have already liked this product!" })
+    }
+    obj.likes.push(userId);
+    res.json(obj.likes);
+})
 
 router.delete('/:productId', function (req, res) {
     const { productId } = req.params;

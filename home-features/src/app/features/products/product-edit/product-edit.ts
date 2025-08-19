@@ -13,7 +13,7 @@ import { Product } from '../../../models';
 export class ProductEdit implements OnInit {
   productFormGroup: FormGroup;
   productId!: string;
-  product: Product = { name: '', category: '', price: '', description: '', dimensions: '', imageUrl: '', color: '', _id: 0, ownerId: '' };
+  product: Product = { name: '', category: '', price: '', description: '', dimensions: '', imageUrl: '', color: '', _id: 0, ownerId: '', likes: [] };
 
   // private authService = inject(AuthService); 
   private productService = inject(ProductService);

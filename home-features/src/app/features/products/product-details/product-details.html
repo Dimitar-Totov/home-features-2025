@@ -1,6 +1,6 @@
 <div class="product-container">
     <div class="media">
-        <p>Total Likes: <i class="fa-regular fa-heart"></i></p>
+        <p>Total Likes: <i class="fa-regular fa-heart"></i>{{product.likes.length}}</p>
         <img src="{{product.imageUrl}}" alt="product.name">
     </div>
     <div class="content">
@@ -20,6 +20,13 @@
             <a [routerLink]="['/catalog', product._id, 'edit']" id="edit">Edit</a>
             <button id="delete" (click)="deleteButton()">Delete</button>
         </div>
+        }
+        @if(!isOwner && isLoggedIn){
+        <span>Like this product</span>
+        <button (click)="likeButton()" class="like-button"><i class="fa-regular fa-thumbs-up"></i></button>
+        @if(alreadyLiked){
+        <p class="liked-error">{{alreadyLiked}}</p>
+        }
         }
     </div>
 </div>
