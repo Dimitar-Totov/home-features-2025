@@ -1,0 +1,26 @@
+.profile-container{
+    background-color: #FAF0E6;
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    flex-direction: column;
+
+    .media{
+        margin-top: 1.5em;
+        img{
+            max-width: 25ch;
+        }
+    }
+
+    .content{
+        p{
+            color: #10898d;
+            font-weight: bold;
+        }
+
+        span{
+            color: orange;
+            text-decoration: underline;
+        };
+    }
+}

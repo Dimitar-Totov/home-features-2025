@@ -79,6 +79,12 @@ header {
                 span{
                     color: orange;
                 }
+
+                .profile-link i:hover{
+                    box-shadow: 0 0 1em 0 rgba(33, 149, 140, 1);
+                    border: none;
+                    border-radius: 50%;
+                }
             }
         }
     }

@@ -14,7 +14,7 @@
             <li><a routerLink="/create">Create Product</a></li>
             <li><a routerLink="/logout" (click)="logout()">Logout</a></li>
             <div class="profile">
-                <i class="fas fa-user"></i>
+                <a class="profile-link" [routerLink]="['/', currentUser()?.username, 'profile']"><i class="fas fa-user"></i></a>
                 <p>Hello again, <span>{{currentUser()?.username}}</span></p>
             </div>
             }

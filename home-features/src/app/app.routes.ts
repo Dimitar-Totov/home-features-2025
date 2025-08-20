@@ -10,6 +10,7 @@ export const routes: Routes = [
     { path: 'about', loadComponent: () => import('./features/about-us/about-us').then(c => c.AboutUs) },
     { path: 'register', loadComponent: () => import('./features/auth/register/register').then(c => c.Register), canActivate: [guestGuard] },
     { path: 'login', loadComponent: () => import('./features/auth/login/login').then(c => c.Login), canActivate: [guestGuard] },
+    { path: ':username/profile', loadComponent: () => import('./features/profile/user-profile/user-profile').then(c => c.UserProfile), canActivate: [authGuard] },
     { path: 'create', loadComponent: () => import('./features/products/product-create/product-create').then(c => c.ProductCreate), canActivate: [authGuard] },
     { path: '**', loadComponent: () => import('./shared/components/not-found/not-found').then(c => c.NotFound) },
 ];
