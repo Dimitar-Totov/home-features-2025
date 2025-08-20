@@ -18,6 +18,10 @@
             max-width: 70ch;
             border-radius: 0.5em;
         }
+
+        .likes-count{
+            margin-left: 0.3em;
+        }
     }
 
     .content {
